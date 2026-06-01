@@ -21,5 +21,7 @@
     @include('panel.pages.clients')
     @include('panel.pages.features')
     @include('panel.pages.testimonials')
+    @include('panel.pages.portfolio')
+    @include('panel.pages.contact')
 
 @endsection
