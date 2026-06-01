@@ -21,3 +21,7 @@ Route::get('/about', function () {
 Route::get('/home', function () {
     return view('panel.pages.home');
 })->name('panel.pages.home');
+
+Route::get('/stats', function () {
+    return redirect()->to(route('panel.pages.home') . '#stats');
+})->name('panel.pages.stats');

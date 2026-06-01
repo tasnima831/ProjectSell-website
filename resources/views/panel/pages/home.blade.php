@@ -16,5 +16,6 @@
     </section>
 
     @include('panel.pages.about')
+    @include('panel.pages.stats')
 
 @endsection
