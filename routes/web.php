@@ -29,3 +29,7 @@ Route::get('/service', function () {
 Route::get('/service-details', function () {
     return view('panel.pages.service-details');
 })->name('panel.pages.service-details');
+
+Route::get('/portfolio-details', function () {
+    return view('panel.pages.portfolio-details');
+})->name('panel.pages.portfolio-details');
