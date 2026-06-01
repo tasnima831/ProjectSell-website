@@ -17,5 +17,8 @@
 
     @include('panel.pages.about')
     @include('panel.pages.stats')
+    @include('panel.pages.service')
+    @include('panel.pages.clients')
+    @include('panel.pages.features')
 
 @endsection
