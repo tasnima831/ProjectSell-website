@@ -20,5 +20,6 @@
     @include('panel.pages.service')
     @include('panel.pages.clients')
     @include('panel.pages.features')
+    @include('panel.pages.testimonials')
 
 @endsection
