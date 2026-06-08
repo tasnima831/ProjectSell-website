@@ -1,14 +1,16 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register', function () {
-    return view('panel.pages.register');
-})->name('register');
-
-Route::post('/register', function () {
-    return redirect()->route('panel.pages.home');
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 });
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::get('/about', function () {
     return redirect()->to(route('panel.pages.home') . '#about');
@@ -22,13 +24,13 @@ Route::get('/stats', function () {
     return redirect()->to(route('panel.pages.home') . '#stats');
 })->name('panel.pages.stats');
 
-Route::get('/service', function () {
-    return redirect()->to(route('panel.pages.home') . '#service');
-})->name('panel.pages.service');
+Route::get('/projects', function () {
+    return redirect()->to(route('panel.pages.home') . '#projects');
+})->name('panel.pages.projects');
 
-Route::get('/service-details', function () {
-    return view('panel.pages.service-details');
-})->name('panel.pages.service-details');
+Route::get('/project-details', function () {
+    return view('panel.pages.project-details');
+})->name('panel.pages.project-details');
 
 Route::get('/portfolio-details', function () {
     return view('panel.pages.portfolio-details');

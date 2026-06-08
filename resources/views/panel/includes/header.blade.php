@@ -1,7 +1,7 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <a class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">ProjectSell</h1>
@@ -11,7 +11,7 @@
         <ul>
           <li><a href="{{ request()->routeIs('panel.pages.home') ? '#home' : route('panel.pages.home') . '#home' }}" class="{{ request()->routeIs('panel.pages.home') ? 'active' : '' }}">Home</a></li>
           <li><a href="{{ request()->routeIs('panel.pages.home') ? '#about' : route('panel.pages.home') . '#about' }}">About</a></li>
-          <li><a href="{{ request()->routeIs('panel.pages.home') ? '#services' : route('panel.pages.home') . '#services' }}">Services</a></li>
+          <li><a href="{{ request()->routeIs('panel.pages.home') ? '#projects' : route('panel.pages.home') . '#projects' }}">Projects</a></li>
           <li><a href="{{ request()->routeIs('panel.pages.home') ? '#portfolio' : route('panel.pages.home') . '#portfolio' }}">Portfolio</a></li>
           <li><a href="{{ request()->routeIs('panel.pages.home') ? '#team' : route('panel.pages.home') . '#team' }}">Team</a></li>
           <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -36,7 +36,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="cta-btn" href="index.html#about">Get Started</a>
-
+      <a class="cta-btn" href="{{ route('register') }}">Register</a>
+      <a class="cta-btn" href="{{ route('login') }}">Login</a>
     </div>
   </header>

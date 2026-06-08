@@ -2,31 +2,29 @@
 
       <div class="container">
 
-        <div class="row gy-4">
+        <div class="row gy-4 align-items-center">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3>Voluptatem dignissimos provident laboris nisi ut aliquip ex ea commodo</h3>
-            <img src="{{ asset('assets/img/about.jpg') }}" class="img-fluid rounded-4 mb-4" alt="About image">
-            <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat debitis quia recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur fugiat voluptas ea.</p>
-            <p>Temporibus nihil enim deserunt sed ea. Provident sit expedita aut cupiditate nihil vitae quo officia vel. Blanditiis eligendi possimus et in cum. Quidem eos ut sint rem veniam qui. Ut ut repellendus nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut omnis beatae neque deleniti repellendus.</p>
+            <h3>We sell coding projects and video courses.</h3>
+            <img src="https://plus.unsplash.com/premium_vector-1734051503941-69e0f2020d0a?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid rounded-4 mb-4" alt="Developer working on a coding project">
+            <p>At ProjectSell, we empower aspiring and experienced developers alike by providing high-quality coding projects and comprehensive video courses. Whether you're looking to build a portfolio, learn a new technology, or deepen your understanding of software development, we have the resources to help you succeed.</p>
+            <p>Our platform is designed to offer practical, hands-on learning experiences. Each project comes with detailed instructions and source code, while our video courses provide in-depth explanations and real-world examples. We believe in learning by doing, and our content is crafted to help you master new skills efficiently and effectively.</p>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
             <div class="content ps-0 ps-lg-5">
               <p class="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
+                Our mission is to bridge the gap between theoretical knowledge and practical application, offering hands-on learning experiences that prepare you for real-world challenges.
               </p>
               <ul>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
+                <li><i class="bi bi-check-circle-fill"></i> <span>Access a diverse library of ready-to-use coding projects.</span></li>
+                <li><i class="bi bi-check-circle-fill"></i> <span>Learn from expert-led video tutorials covering various programming languages and frameworks.</span></li>
+                <li><i class="bi bi-check-circle-fill"></i> <span>Enhance your skills with practical, step-by-step guidance and downloadable resources.</span></li>
               </ul>
               <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                Join our community of learners and creators. Explore our offerings today and take the next step in your coding journey with ProjectSell.
               </p>
 
               <div class="position-relative mt-4">
-                <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded-4" alt="About secondary image">
+                <img src="https://plus.unsplash.com/premium_vector-1734332717979-ee3bbad5c741?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid rounded-4" alt="Person learning to code from a video course">
                 <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
               </div>
             </div>

@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>Login</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: black url('https://images.unsplash.com/photo-1775656926048-16743f9a6c7a?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+            background: black url('https://images.unsplash.com/photo-1721041879210-c2580ae0a8ed?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
             background-attachment: fixed;
             background-size: cover;
         }
@@ -70,7 +70,7 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        .btn-register {
+        .btn-login {
             width: 100%;
             padding: 14px;
             border: none;
@@ -85,7 +85,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .btn-register:hover {
+        .btn-login:hover {
             background: rgba(255, 255, 255, 0.9);
             transform: translateY(-2px);
         }
@@ -93,34 +93,30 @@
 </head>
 <body>
     <div class="glass-container">
-        <h2 style="font-weight: 800; font-size: 40px">Create Account</h2>
-        <form action="{{ route('register') }}" method="POST">
+        <h2 style="font-weight: 800; font-size: 40px">Login</h2>
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="input-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email" required autofocus>
+                @error('email')
+                    <span style="color: #ff8e8e; font-size: 14px;">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
-            </div>
-
-            <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
             <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                @error('password')
+                    <span style="color: #ff8e8e; font-size: 14px;">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div class="input-group">
-                <label for="password_confirmation">Confirm Password</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm your password" required>
+            <div style="text-align: left; margin-bottom: 15px;">
+                <label style="font-size: 14px;"><input type="checkbox" name="remember"> Remember Me</label>
             </div>
 
-            <button type="submit" class="btn-register">Register</button>
+            <button type="submit" class="btn-login">Login</button>
         </form>
     </div>
 </body>
