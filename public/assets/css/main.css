@@ -258,6 +258,9 @@ h6 {
   transition: 0.3s;
   text-transform: uppercase;
   border: 2px solid var(--contrast-color);
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .header .cta-btn:hover,

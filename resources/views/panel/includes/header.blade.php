@@ -36,7 +36,17 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="cta-btn" href="{{ route('register') }}">Register</a>
-      <a class="cta-btn" href="{{ route('login') }}">Login</a>
+      @guest
+          <a class="cta-btn" href="{{ route('register') }}">Register</a>
+          <a class="cta-btn" href="{{ route('login') }}">Login</a>
+      @else
+            @if(auth()->user()->role === 'admin')
+              <a class="cta-btn" href="{{ route('admin.dashboard') }}">Admin</a>
+            @endif
+            <form action="{{ route('logout') }}" method="POST" style="display:inline; margin: 0;">
+              @csrf
+              <button type="submit" class="cta-btn">Logout</button>
+            </form>
+      @endguest
     </div>
   </header>

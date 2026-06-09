@@ -6,12 +6,10 @@
     <div class="row align-items-center gy-5">
 
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-        <p class="text-uppercase text-muted mb-3">The Fine Print Book Collection</p>
-        <h1 class="display-5 fw-bold">Best Offer Save 30%. Grab it now!</h1>
-        <p class="lead text-secondary mb-4">Discover our curated selection of premium books with fast delivery, reliable quality, and exclusive offers.</p>
+        <h1 class="display-5 fw-bold"><span style="color: red;">NoteQuest</span> - Best Note-Taking App with AI!</h1>
+        <p class="lead text-secondary mb-4">An intelligent note-taking mobile app that helps students understand complex notes using AI. Built with Flutter and OpenRouter API.</p>
 
         <div class="d-flex flex-wrap gap-3 mb-5">
-          <a href="#" class="btn-get-started">Shop Collection</a>
           <a href="#" class="btn btn-outline-secondary d-flex align-items-center"><i class="bi bi-arrow-right-circle me-2"></i>View Details</a>
         </div>
 
@@ -92,17 +90,17 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide">
                 <div class="project-details-card rounded-5 overflow-hidden shadow-lg">
-                  <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=700&q=80" alt="Book collection" class="img-fluid rounded-5">
+                  <img src="https://i.pinimg.com/736x/66/7e/20/667e20b408cf9b32ef62977eef31746c.jpg" alt="Book collection" class="img-fluid rounded-5">
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="project-details-card rounded-5 overflow-hidden shadow-lg">
-                  <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=700&q=80" alt="Book collection" class="img-fluid rounded-5">
+                  <img src="https://i.pinimg.com/736x/81/73/4b/81734b262c509cfe8bf1f6eef36d96d8.jpg" alt="Book collection" class="img-fluid rounded-5">
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="project-details-card rounded-5 overflow-hidden shadow-lg">
-                  <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=700&q=80" alt="Book collection" class="img-fluid rounded-5">
+                  <img src="https://i.pinimg.com/736x/70/b2/e6/70b2e64ce861a2b708f8f998354a0771.jpg" alt="Book collection" class="img-fluid rounded-5">
                 </div>
               </div>
             </div>

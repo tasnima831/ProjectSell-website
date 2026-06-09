@@ -67,6 +67,14 @@
                 <label for="password_confirmation">Confirm Password</label>
                 <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Repeat password" required>
             </div>
+            <div class="input-group">
+                <label for="role">Register As</label>
+                <select id="role" name="role" required style="width:100%; padding:12px; border-radius:8px; background: rgba(255, 255, 255, 0.05); color:#fff; border:1px solid rgba(0, 0, 0, 0.1);">
+                    <option value="user" style="color:black;" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
+                    <option value="admin" style="color:black;" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                </select>
+                @error('role') <span style="color: #ff8e8e; font-size: 14px;">{{ $message }}</span> @enderror
+            </div>
             <button type="submit" class="btn-register">Create Account</button>
         </form>
     </div>

@@ -89,6 +89,13 @@
             background: rgba(255, 255, 255, 0.9);
             transform: translateY(-2px);
         }
+
+        .error-message {
+            color: #ff8e8e;
+            font-size: 14px;
+            display: block;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
@@ -100,7 +107,7 @@
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email" required autofocus>
                 @error('email')
-                    <span style="color: #ff8e8e; font-size: 14px;">{{ $message }}</span>
+                    <span class="error-message">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -108,13 +115,17 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 @error('password')
-                    <span style="color: #ff8e8e; font-size: 14px;">{{ $message }}</span>
+                    <span class="error-message">{{ $message }}</span>
                 @enderror
             </div>
 
             <div style="text-align: left; margin-bottom: 15px;">
                 <label style="font-size: 14px;"><input type="checkbox" name="remember"> Remember Me</label>
             </div>
+
+            @if($errors->has('email'))
+                <span class="error-message">{{ $errors->first('email') }}</span>
+            @endif
 
             <button type="submit" class="btn-login">Login</button>
         </form>

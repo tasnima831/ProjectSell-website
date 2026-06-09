@@ -35,3 +35,11 @@ Route::get('/project-details', function () {
 Route::get('/portfolio-details', function () {
     return view('panel.pages.portfolio-details');
 })->name('panel.pages.portfolio-details');
+
+use App\Http\Middleware\IsAdmin;
+
+Route::middleware(['auth', IsAdmin::class])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
