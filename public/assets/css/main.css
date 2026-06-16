@@ -248,12 +248,12 @@ h6 {
   color: var(--heading-color);
 }
 
-.header .cta-btn,
-.header .cta-btn:focus {
+.cta-btn,
+.cta-btn:focus {
   color: var(--contrast-color);
   font-size: 13px;
   padding: 7px 25px;
-  margin: 0 0 0 30px;
+  /* Removed margin specific to header, will add it back for .header .cta-btn */
   border-radius: 4px;
   transition: 0.3s;
   text-transform: uppercase;
@@ -263,11 +263,15 @@ h6 {
   -webkit-appearance: none;
 }
 
-.header .cta-btn:hover,
-.header .cta-btn:focus:hover {
+.cta-btn:hover,
+.cta-btn:focus:hover {
   color: var(--contrast-color);
   background: var(--accent-color);
   border-color: var(--accent-color);
+}
+
+.header .cta-btn { /* Specific margin for header buttons */
+  margin: 0 0 0 30px;
 }
 
 @media (max-width: 1200px) {
@@ -870,7 +874,7 @@ section,
 # Global Section Titles
 --------------------------------------------------------------*/
 .section-title {
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   position: relative;
 }
 
@@ -1853,4 +1857,8 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+.cta-btn.mb-4 {
+  margin-bottom: 1.5rem !important; /* Adjust as needed for spacing */
 }

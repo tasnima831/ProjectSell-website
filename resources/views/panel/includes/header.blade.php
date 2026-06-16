@@ -10,10 +10,8 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{{ request()->routeIs('panel.pages.home') ? '#home' : route('panel.pages.home') . '#home' }}" class="{{ request()->routeIs('panel.pages.home') ? 'active' : '' }}">Home</a></li>
-          <li><a href="{{ request()->routeIs('panel.pages.home') ? '#about' : route('panel.pages.home') . '#about' }}">About</a></li>
-          <li><a href="{{ request()->routeIs('panel.pages.home') ? '#projects' : route('panel.pages.home') . '#projects' }}">Projects</a></li>
           <li><a href="{{ request()->routeIs('panel.pages.home') ? '#portfolio' : route('panel.pages.home') . '#portfolio' }}">Portfolio</a></li>
-          <li><a href="{{ request()->routeIs('panel.pages.home') ? '#team' : route('panel.pages.home') . '#team' }}">Team</a></li>
+          <li><a href="{{ request()->routeIs('panel.pages.home') ? '#projects' : route('panel.pages.home') . '#projects' }}">Projects</a></li>
           <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Dropdown 1</a></li>
@@ -31,10 +29,18 @@
               <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>
+          
           <li><a href="{{ request()->routeIs('panel.pages.home') ? '#contact' : route('panel.pages.home') . '#contact' }}">Contact</a></li>
+          @auth
+                @if(auth()->user()->role === 'admin')
+                    <li><a href="{{ route('panel.pages.add-project-form') }}">Add Project</a></li>
+                @endif
+            @endauth
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+
+      
 
       @guest
           <a class="cta-btn" href="{{ route('register') }}">Register</a>

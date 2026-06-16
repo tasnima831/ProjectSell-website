@@ -10,21 +10,36 @@
             <span>SELL.</span> <span>PURCHASE.</span> <span>LEARN.</span>
         </h2>
         <p data-aos="fade-up" data-aos-delay="200">You can sell your projects, purchase what you need, and learn new skills all in one place.</p>
-        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="#about" class="btn-get-started">Get Started</a>
-          <a href="{{ asset('assets/videos/hero-video.mp4') }}" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+        
+        <div class="w-100 mt-4" style="max-width: 750px;" data-aos="fade-up" data-aos-delay="300">
+          <form action="#" method="GET" class="input-group input-group-lg shadow">
+            <input type="text" name="search" class="form-control border-0" placeholder="Search projects..." style="border-radius: 50px 0 0 50px; padding-left: 25px; font-size: 1rem;">
+            <select name="price" class="form-select border-0 border-start" style="max-width: 110px; font-size: 0.9rem; cursor: pointer;">
+              <option value="" selected disabled>Price</option>
+              <option value="free">Free</option>
+              <option value="premium">Premium</option>
+            </select>
+            <select name="category" class="form-select border-0 border-start" style="max-width: 150px; font-size: 0.9rem; cursor: pointer;">
+              <option value="" selected disabled>Category</option>
+              <option value="app">App</option>
+              <option value="website">Website</option>
+              <option value="uiux">UI UX</option>
+            </select>
+            <button class="btn btn-get-started border-0 m-0 px-4 d-flex align-items-center" type="submit" style="border-radius: 0 50px 50px 0; background: var(--accent-color); color: white;">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
         </div>
       </div>
 
     </section>
-
-    @include('panel.pages.about')
+    
+    @include('panel.pages.portfolio')
+    @include('panel.pages.projects')    
     @include('panel.pages.stats')
-    @include('panel.pages.projects')
     @include('panel.pages.clients')
     @include('panel.pages.features')
     @include('panel.pages.testimonials')
-    @include('panel.pages.portfolio')
     @include('panel.pages.contact')
 
     <script>

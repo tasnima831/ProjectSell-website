@@ -3,19 +3,28 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p>CHECK OUR PORTFOLIO</p>
-      </div><!-- End Section Title -->
+        <p>BEST PORTFOLIO</p>
 
       <div class="container">
+        @auth
+            @if(auth()->user()->role === 'admin')
+                <a class="cta-btn mb-4" href="{{ route('panel.pages.add-project-form') }}">Add New Project</a>
+            @endif
+        @endauth
+        <div class="text-right mt-5">
+          <a class="cta-btn" style="color: #000000; border: 3px solid #db3939; text-decoration: bold" href="{{ route('panel.pages.home') }}">All Projects</a>
+        </div>
+
+        <!-- Portfolio Gallery -->
 
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
             <li data-filter="*" class="filter-active">All</li>
             <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Product</li>
-            <li data-filter=".filter-branding">Branding</li>
-            <li data-filter=".filter-books">Books</li>
+            <li data-filter=".filter-product">Website</li>
+            <li data-filter=".filter-branding">Theme</li>
+            <li data-filter=".filter-books">UI UX</li>
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
@@ -27,7 +36,7 @@
                   <h4>App 1</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/app-1.jpg') }}" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -39,7 +48,7 @@
                   <h4>Product 1</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/product-1.jpg') }}" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -51,7 +60,7 @@
                   <h4>Branding 1</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/branding-1.jpg') }}" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -63,7 +72,7 @@
                   <h4>Books 1</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/books-1.jpg') }}" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -75,7 +84,7 @@
                   <h4>App 2</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/app-2.jpg') }}" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -87,7 +96,7 @@
                   <h4>Product 2</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/product-2.jpg') }}" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -99,7 +108,7 @@
                   <h4>Branding 2</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/branding-2.jpg') }}" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -111,7 +120,7 @@
                   <h4>Books 2</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/books-2.jpg') }}" title="Books 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -123,7 +132,7 @@
                   <h4>App 3</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/app-3.jpg') }}" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -135,7 +144,7 @@
                   <h4>Product 3</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/product-3.jpg') }}" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -147,7 +156,7 @@
                   <h4>Branding 3</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/branding-3.jpg') }}" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -159,7 +168,7 @@
                   <h4>Books 3</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
                   <a href="{{ asset('assets/img/portfolio/books-3.jpg') }}" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="{{ route('panel.pages.portfolio-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="{{ route('panel.pages.project-details') }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -167,7 +176,7 @@
           </div><!-- End Portfolio Container -->
 
         </div>
-
       </div>
+    </div>
 
     </section>
