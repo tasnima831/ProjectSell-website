@@ -25,6 +25,11 @@
               <option value="website">Website</option>
               <option value="uiux">UI UX</option>
             </select>
+            <select name="language" class="form-select border-0 border-start" style="max-width: 130px; font-size: 0.9rem; cursor: pointer;">
+              <option value="" selected disabled>Language</option>
+              <option value="php">PHP</option>
+              <option value="python">Python</option>
+            </select>
             <button class="btn btn-get-started border-0 m-0 px-4 d-flex align-items-center" type="submit" style="border-radius: 0 50px 50px 0; background: var(--accent-color); color: white;">
               <i class="bi bi-search"></i>
             </button>
@@ -34,8 +39,8 @@
 
     </section>
     
-    @include('panel.pages.portfolio')
-    @include('panel.pages.projects')    
+    @include('panel.pages.projects')
+    @include('panel.pages.featured_projects')    
     @include('panel.pages.stats')
     @include('panel.pages.clients')
     @include('panel.pages.features')

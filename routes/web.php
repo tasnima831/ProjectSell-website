@@ -23,21 +23,19 @@ Route::get('/stats', function () {
     return redirect()->to(route('panel.pages.home') . '#stats');
 })->name('panel.pages.stats');
 
-Route::get('/projects', function () {
-    return redirect()->to(route('panel.pages.home') . '#projects');
-})->name('panel.pages.projects');
+Route::get('/featured_projects', function () {
+    return redirect()->to(route('panel.pages.home') . '#featured_projects');
+})->name('panel.pages.featured_projects');
+
+Route::get('/projects', [ProjectController::class, 'index'])->name('panel.pages.projects.index');
 
 Route::get('/project-details', function () {
     return view('panel.pages.project-details');
 })->name('panel.pages.project-details');
 
-Route::get('/portfolio-details', function () {
-    return view('panel.pages.portfolio-details');
-})->name('panel.pages.portfolio-details');
-
 Route::middleware(['auth'])->group(function () {
-    Route::get('/houses/create', [HouseController::class, 'create'])->name('panel.pages.add-house-form');
-    Route::post('/houses', [HouseController::class, 'store'])->name('panel.pages.houses.store');
+    Route::get('/projects/create', [ProjectController::class, 'create'])->name('panel.pages.add-project-form');
+    Route::post('/projects', [ProjectController::class, 'store'])->name('panel.pages.projects.store');
 });
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
@@ -53,8 +51,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
-    Route::get('/projects/create', [ProjectController::class, 'create'])->name('panel.pages.add-project-form');
-    Route::post('/projects', [ProjectController::class, 'store'])->name('panel.pages.projects.store');
+    Route::get('/featured_projects/create', [ProjectController::class, 'create'])->name('panel.pages.featured-projects.create');
+    Route::post('/featured_projects', [ProjectController::class, 'store'])->name('panel.pages.featured_projects.store');
 });
 
 Route::middleware(['auth'])->group(function () {

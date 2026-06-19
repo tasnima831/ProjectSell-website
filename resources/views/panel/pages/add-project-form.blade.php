@@ -62,6 +62,20 @@
                             </div>
 
                             <div class="col-md-6">
+                                <label for="language" class="form-label">Language</label>
+                                <select name="language" id="language" class="form-select">
+                                    <option value="">Select Language</option>
+                                    <option value="PHP" {{ old('language') == 'PHP' ? 'selected' : '' }}>PHP</option>
+                                    <option value="Python" {{ old('language') == 'Python' ? 'selected' : '' }}>Python</option>
+                                    <option value="JavaScript" {{ old('language') == 'JavaScript' ? 'selected' : '' }}>JavaScript</option>
+                                    <option value="Laravel" {{ old('language') == 'Laravel' ? 'selected' : '' }}>Laravel</option>
+                                </select>
+                                @error('language')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-6">
                                 <label for="price" class="form-label">Price (for Paid projects)</label>
                                 <input type="number" name="price" id="price" class="form-control" step="0.01" min="0" value="{{ old('price', 0.00) }}">
                                 @error('price')

@@ -22,6 +22,7 @@ class Project extends Model
         'price',
         'rating',
         'status',
+        'language',
     ];
 
     /**

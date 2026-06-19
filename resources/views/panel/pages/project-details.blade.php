@@ -36,10 +36,10 @@
 
                     <div class="col-md-2 order-md-1">
                         <div class="d-flex flex-row flex-md-column gap-2 tool-thumbnails">
-                            <div class="thumbnail-box active border p-1 rounded cursor-pointer"><img src="https://i.pinimg.com/1200x/26/5b/42/265b4226bd50a337f599a5326ed19be5.jpg" class="img-fluid"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="https://i.pinimg.com/1200x/ea/c6/61/eac6612d2d5b3756cd8f79a023b18200.jpg" class="img-fluid"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="https://i.pinimg.com/1200x/f3/38/c3/f338c319cea121e00e29c68c854be3a3.jpg" class="img-fluid"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="https://i.pinimg.com/1200x/ea/17/65/ea176500ae2d4d31e8a8669842b186df.jpg" class="img-fluid"></div>
+                            <div class="thumbnail-box active border p-1 rounded cursor-pointer" role="button" tabindex="0"><img src="https://i.pinimg.com/1200x/26/5b/42/265b4226bd50a337f599a5326ed19be5.jpg" class="img-fluid" alt="Ilana Green Sofa view 1"></div>
+                            <div class="thumbnail-box border p-1 rounded cursor-pointer" role="button" tabindex="0"><img src="https://i.pinimg.com/1200x/ea/c6/61/eac6612d2d5b3756cd8f79a023b18200.jpg" class="img-fluid" alt="Ilana Green Sofa view 2"></div>
+                            <div class="thumbnail-box border p-1 rounded cursor-pointer" role="button" tabindex="0"><img src="https://i.pinimg.com/1200x/f3/38/c3/f338c319cea121e00e29c68c854be3a3.jpg" class="img-fluid" alt="Ilana Green Sofa view 3"></div>
+                            <div class="thumbnail-box border p-1 rounded cursor-pointer" role="button" tabindex="0"><img src="https://i.pinimg.com/1200x/ea/17/65/ea176500ae2d4d31e8a8669842b186df.jpg" class="img-fluid" alt="Ilana Green Sofa view 4"></div>
                         </div>
                     </div>
                 </div>
@@ -264,6 +264,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const mainImage = document.getElementById('mainProductImage');
+        const thumbnails = document.querySelectorAll('.thumbnail-box');
+
+        thumbnails.forEach(function (thumbnail) {
+            const selectThumbnail = function () {
+                const thumbnailImage = thumbnail.querySelector('img');
+
+                if (!mainImage || !thumbnailImage) {
+                    return;
+                }
+
+                mainImage.src = thumbnailImage.src;
+                mainImage.alt = thumbnailImage.alt;
+
+                thumbnails.forEach(function (item) {
+                    item.classList.remove('active');
+                });
+
+                thumbnail.classList.add('active');
+            };
+
+            thumbnail.addEventListener('click', selectThumbnail);
+            thumbnail.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectThumbnail();
+                }
+            });
+        });
+    });
 </script>
 
 <style>
