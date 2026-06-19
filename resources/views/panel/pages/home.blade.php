@@ -14,12 +14,12 @@
         <div class="w-100 mt-4" style="max-width: 750px;" data-aos="fade-up" data-aos-delay="300">
           <form action="#" method="GET" class="input-group input-group-lg shadow">
             <input type="text" name="search" class="form-control border-0" placeholder="Search projects..." style="border-radius: 50px 0 0 50px; padding-left: 25px; font-size: 1rem;">
-            <select name="price" class="form-select border-0 border-start" style="max-width: 110px; font-size: 0.9rem; cursor: pointer;">
+            <select name="price" class="form-select border-0 border-start" style="max-width: 130px; font-size: 0.9rem; cursor: pointer;">
               <option value="" selected disabled>Price</option>
               <option value="free">Free</option>
               <option value="premium">Premium</option>
             </select>
-            <select name="category" class="form-select border-0 border-start" style="max-width: 150px; font-size: 0.9rem; cursor: pointer;">
+            <select name="category" class="form-select border-0 border-start" style="max-width: 130px; font-size: 0.9rem; cursor: pointer;">
               <option value="" selected disabled>Category</option>
               <option value="app">App</option>
               <option value="website">Website</option>

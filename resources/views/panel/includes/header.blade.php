@@ -32,10 +32,14 @@
           
           <li><a href="{{ request()->routeIs('panel.pages.home') ? '#contact' : route('panel.pages.home') . '#contact' }}">Contact</a></li>
           @auth
-                @if(auth()->user()->role === 'admin')
-                    <li><a href="{{ route('panel.pages.add-project-form') }}">Add Project</a></li>
-                @endif
-            @endauth
+              <!-- Visible to both Admin and User -->
+              <li><a href="{{ route('panel.pages.add-house-form') }}">Add Project</a></li>
+              
+              @if(auth()->user()->role === 'admin')
+                  <!-- Only visible to Admin -->
+                  <li><a href="{{ route('panel.pages.add-project-form') }}">Add Project</a></li>
+              @endif
+          @endauth
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

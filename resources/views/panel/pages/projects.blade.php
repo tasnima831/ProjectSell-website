@@ -35,7 +35,7 @@
             </div>
 
             <a href="{{ route('panel.pages.project-details') }}" class="stretched-link text-decoration-none">
-              <h3 class="fs-6 fw-bold text-dark mb-0">NoteQuest</h3>
+              <h3 class="fs-3 fw-bold text-dark mb-0">NoteQuest</h3>
             </a>
 
           </div>
@@ -47,7 +47,7 @@
         <div class="service-item shadow-sm p-0 overflow-hidden border-0 rounded-4 project-card position-relative" style="height: 320px;">
 
           <div class="img h-100 w-100">
-            <img src="{{ asset('assets/img/services-2.jpg') }}"
+            <img src="https://i.pinimg.com/1200x/ea/17/65/ea176500ae2d4d31e8a8669842b186df.jpg"
                  class="img-fluid w-100 h-100 object-fit-cover"
                  alt="">
           </div>
@@ -79,7 +79,7 @@
         <div class="service-item shadow-sm p-0 overflow-hidden border-0 rounded-4 project-card position-relative" style="height: 320px;">
 
           <div class="img h-100 w-100">
-            <img src="{{ asset('assets/img/services-3.jpg') }}"
+            <img src="https://i.pinimg.com/1200x/26/5b/42/265b4226bd50a337f599a5326ed19be5.jpg"
                  class="img-fluid w-100 h-100 object-fit-cover"
                  alt="">
           </div>

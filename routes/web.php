@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\HouseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 
@@ -34,6 +35,10 @@ Route::get('/portfolio-details', function () {
     return view('panel.pages.portfolio-details');
 })->name('panel.pages.portfolio-details');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/houses/create', [HouseController::class, 'create'])->name('panel.pages.add-house-form');
+    Route::post('/houses', [HouseController::class, 'store'])->name('panel.pages.houses.store');
+});
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/admin', function () {
@@ -41,7 +46,19 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     })->name('admin.dashboard');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/bill', function () {
+        return view('panel.pages.bill');
+    })->name('panel.pages.bill');
+});
+
 Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('panel.pages.add-project-form');
     Route::post('/projects', [ProjectController::class, 'store'])->name('panel.pages.projects.store');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/videos', function () {
+        return view('panel.pages.videos');
+    })->name('panel.pages.videos');
 });

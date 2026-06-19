@@ -5,24 +5,24 @@
     <div class="container bg-white rounded-4 shadow-sm p-4 p-lg-5" data-aos="fade-up">
         
         <div class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom">
-            <div class="d-flex gap-4 fw-medium text-secondary">
+            {{-- <div class="d-flex gap-4 fw-medium text-secondary">
                 <a href="#" class="text-decoration-none text-dark border-bottom border-2 border-dark pb-1">Sofas</a>
                 <a href="#" class="text-decoration-none text-muted">Chairs</a>
                 <a href="#" class="text-decoration-none text-muted">Beds</a>
-            </div>
+            </div> --}}
             <div class="text-center">
-                <div class="fw-bold fs-4 text-uppercase tracking-wider" style="letter-spacing: 1px;">
-                    <i class="bi bi- armchair me-1"></i> Furniture
+                <div class="fw-bold fs-2 text-uppercase tracking-wider" style="letter-spacing: 1px;">
+                    <i class="bi bi- armchair me-1"></i> Website
                 </div>
             </div>
-            <div class="d-flex gap-3 text-secondary fs-5">
+            {{-- <div class="d-flex gap-3 text-secondary fs-5">
                 <a href="#" class="text-inherit text-muted"><i class="bi bi-person"></i></a>
                 <a href="#" class="text-inherit text-muted"><i class="bi bi-heart"></i></a>
                 <a href="#" class="text-inherit text-muted position-relative">
                     <i class="bi bi-bag"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark small" style="font-size: 0.6rem;">2</span>
                 </a>
-            </div>
+            </div> --}}
         </div>
 
         <div class="row g-5">
@@ -30,16 +30,16 @@
                 <div class="row g-3">
                     <div class="col-md-10 order-md-2">
                         <div class="p-4 rounded-3 d-flex align-items-center justify-content-center style-gallery-main">
-                            <img src="{{ asset('assets/img/portfolio/product-1.jpg') }}" id="mainProductImage" class="img-fluid object-fit-contain" alt="Ilana Green Sofa" style="max-height: 400px;">
+                            <img src="https://i.pinimg.com/1200x/26/5b/42/265b4226bd50a337f599a5326ed19be5.jpg" id="mainProductImage" class="img-fluid object-fit-contain" alt="Ilana Green Sofa" style="max-height: 400px;">
                         </div>
                     </div>
 
                     <div class="col-md-2 order-md-1">
                         <div class="d-flex flex-row flex-md-column gap-2 tool-thumbnails">
-                            <div class="thumbnail-box active border p-1 rounded cursor-pointer"><img src="{{ asset('assets/img/portfolio/product-1.jpg') }}" class="img-fluid"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="{{ asset('assets/img/portfolio/product-1-side.jpg') }}" class="img-fluid"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="{{ asset('assets/img/portfolio/product-1-angle.jpg') }}" class="img-fluid"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="{{ asset('assets/img/portfolio/product-1-back.jpg') }}" class="img-fluid"></div>
+                            <div class="thumbnail-box active border p-1 rounded cursor-pointer"><img src="https://i.pinimg.com/1200x/26/5b/42/265b4226bd50a337f599a5326ed19be5.jpg" class="img-fluid"></div>
+                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="https://i.pinimg.com/1200x/ea/c6/61/eac6612d2d5b3756cd8f79a023b18200.jpg" class="img-fluid"></div>
+                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="https://i.pinimg.com/1200x/f3/38/c3/f338c319cea121e00e29c68c854be3a3.jpg" class="img-fluid"></div>
+                            <div class="thumbnail-box border p-1 rounded cursor-pointer"><img src="https://i.pinimg.com/1200x/ea/17/65/ea176500ae2d4d31e8a8669842b186df.jpg" class="img-fluid"></div>
                         </div>
                     </div>
                 </div>
@@ -47,14 +47,14 @@
 
             <div class="col-lg-5 ps-lg-4 border-start-lg">
                 <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h1 class="display-6 fw-bold m-0">Ilana</h1>
-                    <button class="btn btn-outline-secondary btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                    <h1 class="display-6 fw-bold m-0">Car Rent site</h1>
+                    {{-- <button class="btn btn-outline-secondary btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
                         <i class="bi bi-heart"></i>
-                    </button>
+                    </button> --}}
                 </div>
 
                 <p class="text-muted small mb-4 lead" style="font-size: 0.95rem; line-height: 1.5;">
-                    A sectional sofa or an L shaped sofa can make a great addition to your living room based on your needs.
+                    A modern and responsive car rental website template designed for seamless user experience.
                 </p>
 
                 <h2 class="fw-bold mb-3">$ 430.99</h2>
@@ -70,7 +70,7 @@
                     <a href="#" class="text-decoration-underline text-muted small fw-medium">441 reviews</a>
                 </div>
 
-                <div class="mb-5">
+                {{-- <div class="mb-5">
                     <span class="text-muted d-block small mb-2 fw-medium">Colour</span>
                     <div class="d-flex gap-3 align-items-center">
                         <button class="color-swatch" style="background-color: #f0ad4e;"></button>
@@ -79,31 +79,64 @@
                         <button class="color-swatch active" style="background-color: #556b2f;"></button>
                         <button class="color-swatch" style="background-color: #1a365d;"></button>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="row g-3 mb-5">
                     <div class="col-sm-6">
-                        <button class="btn btn-outline-dark w-100 py-3 fw-bold rounded-1 text-uppercase btn-buy">Buy Now</button>
+                        <a href="{{ route('panel.pages.bill') }}" class="btn btn-outline-dark w-100 py-3 fw-bold rounded-1 text-uppercase btn-buy d-flex align-items-center justify-content-center">Buy Now</a>
                     </div>
                     <div class="col-sm-6">
-                        <button class="btn btn-dark w-100 py-3 fw-bold rounded-1 text-uppercase btn-basket">Add to basket</button>
+                        <a href="{{ route('panel.pages.videos') }}" class="btn btn-dark w-100 py-3 fw-bold rounded-1 text-uppercase btn-basket d-flex align-items-center justify-content-center text-white">Watch Videos</a>
                     </div>
                 </div>
 
-                <div class="border-top">
-                    <div class="py-3 d-flex justify-content-between align-items-center border-bottom text-muted small position-relative">
-                        <div>
-                            <span class="text-dark fw-medium">Dispatched in 5 - 7 weeks</span> 
-                            <i class="bi bi-info-circle ms-1 cursor-pointer text-muted" style="font-size: 0.8rem;"></i>
-                            <a href="#" class="d-block text-decoration-underline text-muted mt-1" style="font-size: 0.75rem;">Why the longer lead time?</a>
-                        </div>
-                        <i class="bi bi-chevron-right text-secondary"></i>
+            </div>
+        </div>
+
+        <!-- Project Details Tabs/Content -->
+        <div class="mt-5 border-top pt-5">
+            <div class="row g-4">
+                <div class="col-12">
+                    <h4 class="fw-bold mb-4">Technical Stack</h4>
+                    <div class="p-4 bg-light rounded-3 mb-5">
+                        <ul class="list-unstyled mb-0 row g-3">
+                            <li class="col-md-3 col-sm-6"><i class="bi bi-patch-check-fill me-2 text-primary"></i>Laravel Framework</li>
+                            <li class="col-md-3 col-sm-6"><i class="bi bi-patch-check-fill me-2 text-primary"></i>Bootstrap v5.3</li>
+                            <li class="col-md-3 col-sm-6"><i class="bi bi-patch-check-fill me-2 text-primary"></i>MySQL Database</li>
+                            <li class="col-md-3 col-sm-6"><i class="bi bi-patch-check-fill me-2 text-primary"></i>JavaScript / Alpine.js</li>
+                        </ul>
                     </div>
-                    <div class="py-3 d-flex justify-content-between align-items-center border-bottom text-muted small">
-                        <div>
-                            <span class="text-dark fw-medium">Home Delivery</span> — $ 10
-                        </div>
-                        <i class="bi bi-chevron-right text-secondary"></i>
+
+                    <h4 class="fw-bold mb-4">Description</h4>
+                    <div class="p-4 bg-light rounded-3">
+                        <p class="text-muted mb-4 lead" style="font-size: 1rem;">A modern and responsive car rental website template designed for seamless user experience. This project features high-quality UI components, optimized for both desktop and mobile viewing, providing a professional look for your rental business.</p>
+                        <ul class="text-muted small mb-0 list-unstyled row g-3">
+                            <li class="col-md-4 col-sm-6">✔ Fully Responsive Design</li>
+                            <li class="col-md-4 col-sm-6">✔ Clean and Modern UI</li>
+                            <li class="col-md-4 col-sm-6">✔ Easy Customization</li>
+                            <li class="col-md-4 col-sm-6">✔ Cross-Browser Compatibility</li>
+                            <li class="col-md-4 col-sm-6">✔ SEO Optimized</li>
+                            <li class="col-md-4 col-sm-6">✔ Bootstrap v5.3.8</li>
+                            <li class="col-md-4 col-sm-6">✔ HTML5 & CSS3</li>
+                            <li class="col-md-4 col-sm-6">✔ Sticky Top Navigation Bar</li>
+                            <li class="col-md-4 col-sm-6">✔ Hero Header</li>
+                            <li class="col-md-4 col-sm-6">✔ Call-to-Action Buttons</li>
+                            <li class="col-md-4 col-sm-6">✔ On-Hover Effects</li>
+                            <li class="col-md-4 col-sm-6">✔ Pricing Table</li>
+                            <li class="col-md-4 col-sm-6">✔ FAQ Section</li>
+                            <li class="col-md-4 col-sm-6">✔ Accordions</li>
+                            <li class="col-md-4 col-sm-6">✔ Detailed Footer</li>
+                            <li class="col-md-4 col-sm-6">✔ Collapsible Burger Menu</li>
+                            <li class="col-md-4 col-sm-6">✔ One-Page Design</li>
+                            <li class="col-md-4 col-sm-6">✔ Testimonial Section</li>
+                            <li class="col-md-4 col-sm-6">✔ Multipurpose Theme</li>
+                            <li class="col-md-4 col-sm-6">✔ Clean Codebase</li>
+                            <li class="col-md-4 col-sm-6">✔ Fully Responsive</li>
+                            <li class="col-md-4 col-sm-6">✔ SEO-Friendly</li>
+                            <li class="col-md-4 col-sm-6">✔ Sass-supported Codebase</li>
+                            <li class="col-md-4 col-sm-6">✔ Page-Speed-Optimized</li>
+                            <li class="col-md-4 col-sm-6">✔ Cross-Browser-Compatible</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -315,6 +348,12 @@ document.addEventListener('DOMContentLoaded', function() {
     @media (min-width: 992px) {
         .border-start-lg {
             border-left: 1px solid #e9ecef !important;
+        }
+        .collapse-chevron {
+            transition: transform 0.3s ease;
+        }
+        [aria-expanded="true"] .collapse-chevron {
+            transform: rotate(90deg);
         }
     }
 
