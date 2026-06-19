@@ -83,35 +83,23 @@
             @if ($projects->count())
                 <div class="row gy-4">
                     @foreach ($projects as $project)
-                        @php
-                            $fallbackImage = match ($project->category) {
-                                'Website' => asset('assets/img/portfolio/product-1.jpg'),
-                                'Theme' => asset('assets/img/portfolio/branding-1.jpg'),
-                                'UI UX' => asset('assets/img/portfolio/books-1.jpg'),
-                                default => asset('assets/img/portfolio/app-1.jpg'),
-                            };
-                            $image = $project->image_path ? asset('storage/' . $project->image_path) : $fallbackImage;
-                        @endphp
-
                         <div class="col-xl-4 col-md-6">
                             <article class="all-project-card h-100">
-                                <a href="{{ route('panel.pages.project-details') }}" class="all-project-image d-block">
-                                    <img src="{{ $image }}" alt="{{ $project->title }}" class="img-fluid">
+                                <a href="{{ route('panel.pages.project-details', $project) }}" class="all-project-image d-block">
+                                    <img src="{{ $project->imageUrl() }}" alt="{{ $project->title }}" class="img-fluid">
                                 </a>
 
                                 <div class="all-project-body">
                                     <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
                                         <span class="project-chip">{{ $project->category }}</span>
-                                        <span class="project-price {{ $project->status === 'free' ? 'text-success' : 'text-dark' }}">
-                                            {{ $project->status === 'free' ? 'Free' : '$' . number_format((float) $project->price, 2) }}
-                                        </span>
+                                        <span class="project-price {{ $project->status === 'free' ? 'text-success' : 'text-dark' }}">{{ $project->priceLabel() }}</span>
                                     </div>
 
                                     <h3>
-                                        <a href="{{ route('panel.pages.project-details') }}">{{ $project->title }}</a>
+                                        <a href="{{ route('panel.pages.project-details', $project) }}">{{ $project->title }}</a>
                                     </h3>
 
-                                    <p>{{ \Illuminate\Support\Str::limit($project->description ?? 'No description added yet.', 95) }}</p>
+                                    <p>{{ \Illuminate\Support\Str::limit($project->one_line_description ?: ($project->description ?? 'No description added yet.'), 95) }}</p>
 
                                     <div class="d-flex justify-content-between align-items-center gap-3 mt-3">
                                         <span class="small text-warning">

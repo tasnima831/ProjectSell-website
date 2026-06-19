@@ -1,148 +1,121 @@
 @extends('panel.layout')
-@section('content')
 
+@section('content')
 <section id="portfolio-details" class="portfolio-details section py-5" style="background-color: #f8f9fa;">
     <div class="container bg-white rounded-4 shadow-sm p-4 p-lg-5" data-aos="fade-up">
-        
-        <div class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom">
-            {{-- <div class="d-flex gap-4 fw-medium text-secondary">
-                <a href="#" class="text-decoration-none text-dark border-bottom border-2 border-dark pb-1">Sofas</a>
-                <a href="#" class="text-decoration-none text-muted">Chairs</a>
-                <a href="#" class="text-decoration-none text-muted">Beds</a>
-            </div> --}}
-            <div class="text-center">
-                <div class="fw-bold fs-2 text-uppercase tracking-wider" style="letter-spacing: 1px;">
-                    <i class="bi bi- armchair me-1"></i> Website
-                </div>
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        <div class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom flex-wrap gap-3">
+            <div>
+                <span class="badge text-bg-light border">{{ $project->category }}</span>
+                @if ($project->language)
+                    <span class="badge text-bg-light border">{{ $project->language }}</span>
+                @endif
             </div>
-            {{-- <div class="d-flex gap-3 text-secondary fs-5">
-                <a href="#" class="text-inherit text-muted"><i class="bi bi-person"></i></a>
-                <a href="#" class="text-inherit text-muted"><i class="bi bi-heart"></i></a>
-                <a href="#" class="text-inherit text-muted position-relative">
-                    <i class="bi bi-bag"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark small" style="font-size: 0.6rem;">2</span>
-                </a>
-            </div> --}}
+
+            <a href="{{ route('panel.pages.projects.index') }}" class="text-decoration-none small fw-bold">
+                <i class="bi bi-arrow-left"></i> Back to all projects
+            </a>
         </div>
 
         <div class="row g-5">
             <div class="col-lg-7">
+                @php($images = $project->imageUrls())
                 <div class="row g-3">
                     <div class="col-md-10 order-md-2">
                         <div class="p-4 rounded-3 d-flex align-items-center justify-content-center style-gallery-main">
-                            <img src="https://i.pinimg.com/1200x/26/5b/42/265b4226bd50a337f599a5326ed19be5.jpg" id="mainProductImage" class="img-fluid object-fit-contain" alt="Ilana Green Sofa" style="max-height: 400px;">
+                            <img src="{{ $images[0] }}" id="mainProductImage" class="img-fluid object-fit-contain" alt="{{ $project->title }}" style="max-height: 400px;">
                         </div>
                     </div>
 
                     <div class="col-md-2 order-md-1">
                         <div class="d-flex flex-row flex-md-column gap-2 tool-thumbnails">
-                            <div class="thumbnail-box active border p-1 rounded cursor-pointer" role="button" tabindex="0"><img src="https://i.pinimg.com/1200x/26/5b/42/265b4226bd50a337f599a5326ed19be5.jpg" class="img-fluid" alt="Ilana Green Sofa view 1"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer" role="button" tabindex="0"><img src="https://i.pinimg.com/1200x/ea/c6/61/eac6612d2d5b3756cd8f79a023b18200.jpg" class="img-fluid" alt="Ilana Green Sofa view 2"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer" role="button" tabindex="0"><img src="https://i.pinimg.com/1200x/f3/38/c3/f338c319cea121e00e29c68c854be3a3.jpg" class="img-fluid" alt="Ilana Green Sofa view 3"></div>
-                            <div class="thumbnail-box border p-1 rounded cursor-pointer" role="button" tabindex="0"><img src="https://i.pinimg.com/1200x/ea/17/65/ea176500ae2d4d31e8a8669842b186df.jpg" class="img-fluid" alt="Ilana Green Sofa view 4"></div>
+                            @foreach ($images as $image)
+                                <div class="thumbnail-box {{ $loop->first ? 'active' : '' }} border p-1 rounded cursor-pointer" role="button" tabindex="0">
+                                    <img src="{{ $image }}" class="img-fluid" alt="{{ $project->title }} image {{ $loop->iteration }}">
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-5 ps-lg-4 border-start-lg">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h1 class="display-6 fw-bold m-0">Car Rent site</h1>
-                    {{-- <button class="btn btn-outline-secondary btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                        <i class="bi bi-heart"></i>
-                    </button> --}}
+                <div class="d-flex justify-content-between align-items-start mb-2 gap-3">
+                    <h1 class="display-6 fw-bold m-0">{{ $project->title }}</h1>
+                    
                 </div>
 
                 <p class="text-muted small mb-4 lead" style="font-size: 0.95rem; line-height: 1.5;">
-                    A modern and responsive car rental website template designed for seamless user experience.
+                    {{ $project->one_line_description ?: 'No short summary added yet.' }}
                 </p>
-
-                <h2 class="fw-bold mb-3">$ 430.99</h2>
+                <div class="mb-4">
+                <span class="fw-bold {{ $project->status === 'free' ? 'text-success' : 'text-dark' }}" style="font-size: 1.25rem;">
+                        {{ $project->priceLabel() }}
+                    </span>
+                </div>
 
                 <div class="d-flex align-items-center gap-2 mb-4">
                     <div class="text-warning small">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
+                        @for ($i = 1; $i <= 5; $i++)
+                            <i class="bi bi-star{{ $i <= round((float) $project->rating) ? '-fill' : '' }}"></i>
+                        @endfor
                     </div>
-                    <a href="#" class="text-decoration-underline text-muted small fw-medium">441 reviews</a>
+                    <span class="text-muted small fw-medium">{{ number_format((float) $project->rating, 1) }} rating</span>
                 </div>
 
-                {{-- <div class="mb-5">
-                    <span class="text-muted d-block small mb-2 fw-medium">Colour</span>
-                    <div class="d-flex gap-3 align-items-center">
-                        <button class="color-swatch" style="background-color: #f0ad4e;"></button>
-                        <button class="color-swatch" style="background-color: #999999;"></button>
-                        <button class="color-swatch" style="background-color: #637a91;"></button>
-                        <button class="color-swatch active" style="background-color: #556b2f;"></button>
-                        <button class="color-swatch" style="background-color: #1a365d;"></button>
+                <div class="d-flex align-items-center gap-3 mb-4 pb-4 border-bottom creator-profile">
+                    <img src="{{ $project->creatorProfileUrl() }}" class="rounded-circle border flex-shrink-0 object-fit-cover" width="56" height="56" alt="{{ $project->creator_name ?: 'Project creator' }}">
+                    <div>
+                        <span class="text-muted small d-block">Created by</span>
+                        <p class="text-muted small mb-0">{{ $project->creator_name ?: 'Unknown creator' }}</p>
+                        <h6 class="fw-bold mb-1">{{ $project->company_name ?: 'Independent Seller' }}</h6>
                     </div>
-                </div> --}}
+                </div>
 
                 <div class="row g-3 mb-5">
                     <div class="col-sm-6">
                         <a href="{{ route('panel.pages.bill') }}" class="btn btn-outline-dark w-100 py-3 fw-bold rounded-1 text-uppercase btn-buy d-flex align-items-center justify-content-center">Buy Now</a>
                     </div>
                     <div class="col-sm-6">
-                        <a href="{{ route('panel.pages.videos') }}" class="btn btn-dark w-100 py-3 fw-bold rounded-1 text-uppercase btn-basket d-flex align-items-center justify-content-center text-white">Watch Videos</a>
+                        @if ($project->project_link)
+                            <a href="{{ $project->project_link }}" target="_blank" rel="noopener" class="btn btn-dark w-100 py-3 fw-bold rounded-1 text-uppercase btn-basket d-flex align-items-center justify-content-center text-white">Live Link</a>
+                        @else
+                            <a href="{{ route('panel.pages.videos') }}" class="btn btn-dark w-100 py-3 fw-bold rounded-1 text-uppercase btn-basket d-flex align-items-center justify-content-center text-white">Watch Videos</a>
+                        @endif
                     </div>
+                    @if ($project->project_file_path)
+                        <div class="col-12">
+                            <a href="{{ asset('storage/' . $project->project_file_path) }}" class="btn btn-light border w-100 py-3 fw-bold rounded-1 text-uppercase" download>
+                                <i class="bi bi-download"></i> Download Project File
+                            </a>
+                        </div>
+                    @endif
                 </div>
-
             </div>
         </div>
 
-        <!-- Project Details Tabs/Content -->
         <div class="mt-5 border-top pt-5">
             <div class="row g-4">
                 <div class="col-12">
                     <h4 class="fw-bold mb-4">Technical Stack</h4>
                     <div class="p-4 bg-light rounded-3 mb-5">
-                        <ul class="list-unstyled mb-0 row g-3">
-                            <li class="col-md-3 col-sm-6"><i class="bi bi-patch-check-fill me-2 text-primary"></i>Laravel Framework</li>
-                            <li class="col-md-3 col-sm-6"><i class="bi bi-patch-check-fill me-2 text-primary"></i>Bootstrap v5.3</li>
-                            <li class="col-md-3 col-sm-6"><i class="bi bi-patch-check-fill me-2 text-primary"></i>MySQL Database</li>
-                            <li class="col-md-3 col-sm-6"><i class="bi bi-patch-check-fill me-2 text-primary"></i>JavaScript / Alpine.js</li>
-                        </ul>
+                        @if ($project->tech_used)
+                            <p class="text-muted mb-0" style="white-space: pre-line;">{{ $project->tech_used }}</p>
+                        @else
+                            <p class="text-muted mb-0">No technical stack added yet.</p>
+                        @endif
                     </div>
 
                     <h4 class="fw-bold mb-4">Description</h4>
                     <div class="p-4 bg-light rounded-3">
-                        <p class="text-muted mb-4 lead" style="font-size: 1rem;">A modern and responsive car rental website template designed for seamless user experience. This project features high-quality UI components, optimized for both desktop and mobile viewing, providing a professional look for your rental business.</p>
-                        <ul class="text-muted small mb-0 list-unstyled row g-3">
-                            <li class="col-md-4 col-sm-6">✔ Fully Responsive Design</li>
-                            <li class="col-md-4 col-sm-6">✔ Clean and Modern UI</li>
-                            <li class="col-md-4 col-sm-6">✔ Easy Customization</li>
-                            <li class="col-md-4 col-sm-6">✔ Cross-Browser Compatibility</li>
-                            <li class="col-md-4 col-sm-6">✔ SEO Optimized</li>
-                            <li class="col-md-4 col-sm-6">✔ Bootstrap v5.3.8</li>
-                            <li class="col-md-4 col-sm-6">✔ HTML5 & CSS3</li>
-                            <li class="col-md-4 col-sm-6">✔ Sticky Top Navigation Bar</li>
-                            <li class="col-md-4 col-sm-6">✔ Hero Header</li>
-                            <li class="col-md-4 col-sm-6">✔ Call-to-Action Buttons</li>
-                            <li class="col-md-4 col-sm-6">✔ On-Hover Effects</li>
-                            <li class="col-md-4 col-sm-6">✔ Pricing Table</li>
-                            <li class="col-md-4 col-sm-6">✔ FAQ Section</li>
-                            <li class="col-md-4 col-sm-6">✔ Accordions</li>
-                            <li class="col-md-4 col-sm-6">✔ Detailed Footer</li>
-                            <li class="col-md-4 col-sm-6">✔ Collapsible Burger Menu</li>
-                            <li class="col-md-4 col-sm-6">✔ One-Page Design</li>
-                            <li class="col-md-4 col-sm-6">✔ Testimonial Section</li>
-                            <li class="col-md-4 col-sm-6">✔ Multipurpose Theme</li>
-                            <li class="col-md-4 col-sm-6">✔ Clean Codebase</li>
-                            <li class="col-md-4 col-sm-6">✔ Fully Responsive</li>
-                            <li class="col-md-4 col-sm-6">✔ SEO-Friendly</li>
-                            <li class="col-md-4 col-sm-6">✔ Sass-supported Codebase</li>
-                            <li class="col-md-4 col-sm-6">✔ Page-Speed-Optimized</li>
-                            <li class="col-md-4 col-sm-6">✔ Cross-Browser-Compatible</li>
-                        </ul>
+                        <p class="text-muted mb-0 lead" style="font-size: 1rem; white-space: pre-line;">{{ $project->description ?: 'No description added yet.' }}</p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Reviews Section -->
         <div class="mt-5 pt-5 border-top">
             <div class="row g-5">
                 <div class="col-lg-4">
@@ -207,64 +180,44 @@
             </div>
         </div>
     </div>
+    
 </section>
 
-<section id="similar-projects" class="section py-5 border-top bg-light">
-    <div class="container" data-aos="fade-up">
-        <div class="section-title text-start mb-5">
-            <h2 class="fw-bold h3">Similar Projects</h2>
-            <p class="text-muted">Explore more projects that fit your interests.</p>
-        </div>
-        <div class="row gy-4 services">
-            @foreach([
-                ['name' => 'E-Commerce Dashboard', 'img' => 'app-1.jpg', 'price' => '$49.00', 'rating' => 4.8, 'reviews' => 124],
-                ['name' => 'Admin SaaS Template', 'img' => 'product-2.jpg', 'price' => 'Free', 'rating' => 4.5, 'reviews' => 89],
-                ['name' => 'Real Estate App UI', 'img' => 'branding-3.jpg', 'price' => '$29.00', 'rating' => 4.9, 'reviews' => 56]
-            ] as $project)
-            <div class="col-lg-4 col-md-6">
-                <div class="service-item shadow-sm p-0 overflow-hidden border-0 rounded-4 project-card position-relative" style="height: 320px;">
-                    <div class="img h-100 w-100">
-                        <img src="{{ asset('assets/img/portfolio/'.$project['img']) }}" class="img-fluid w-100 h-100 object-fit-cover" alt="">
-                    </div>
-                    <div class="details p-2 position-absolute bottom-0 start-50 translate-middle-x mb-2 rounded-3 text-center" style="width: 92%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                        <div class="d-flex justify-content-center align-items-center gap-3 mb-1">
-                            <div class="d-flex align-items-center gap-1">
-                                <div class="text-warning small" style="font-size: 0.8rem; position: relative; left: -71px;"><i class="bi bi-star-fill"></i></div>
-                                <span class="text-dark small fw-bold" style="position: relative; left: -70px;">{{ $project['rating'] }}</span>
-                                <span class="text-muted small" style="font-size: 0.75rem; position: relative; left: -70px;">({{ $project['reviews'] }})</span>
-                            </div>
-                            <span class="fw-bold {{ $project['price'] == 'Free' ? 'text-success' : 'text-dark' }}" style="font-size: 1rem; position: relative; right: -70px;">{{ $project['price'] }}</span>
-                        </div>
-                        <a href="{{ route('panel.pages.project-details') }}" class="stretched-link text-decoration-none">
-                            <h3 class="fs-6 fw-bold text-dark mb-0">{{ $project['name'] }}</h3>
-                        </a>
-                    </div>
-                </div>
+
+
+@if (($similarProjects ?? collect())->count())
+    <section id="similar-projects" class="section py-5 border-top bg-light">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title text-start mb-5">
+                <h2 class="fw-bold h3">Similar Projects</h2>
+                <p class="text-muted">Explore more projects that fit your interests.</p>
             </div>
-            @endforeach
+            <div class="row gy-4 services">
+                @foreach ($similarProjects as $similarProject)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item shadow-sm p-0 overflow-hidden border-0 rounded-4 project-card position-relative" style="height: 320px;">
+                            <div class="img h-100 w-100">
+                                <img src="{{ $similarProject->imageUrl() }}" class="img-fluid w-100 h-100 object-fit-cover" alt="{{ $similarProject->title }}">
+                            </div>
+                            @if ($similarProject->language)
+                                <div class="project-language-bar position-absolute rounded-3 text-center">{{ $similarProject->language }}</div>
+                            @endif
+                            <div class="details p-2 position-absolute bottom-0 start-50 translate-middle-x mb-2 rounded-3 text-center" style="width: 92%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                                <div class="d-flex justify-content-between align-items-center gap-3 mb-1">
+                                    <span class="text-warning small"><i class="bi bi-star-fill"></i> <span class="text-dark fw-bold">{{ number_format((float) $similarProject->rating, 1) }}</span></span>
+                                    <span class="fw-bold {{ $similarProject->status === 'free' ? 'text-success' : 'text-dark' }}">{{ $similarProject->priceLabel() }}</span>
+                                </div>
+                                <a href="{{ route('panel.pages.project-details', $similarProject) }}" class="stretched-link text-decoration-none">
+                                    <h3 class="fs-6 fw-bold text-dark mb-0">{{ $similarProject->title }}</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-    </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const stars = document.querySelectorAll('.rating-input i');
-    stars.forEach(star => {
-        star.addEventListener('click', function() {
-            const val = this.getAttribute('data-value');
-            stars.forEach(s => {
-                if (parseInt(s.getAttribute('data-value')) <= parseInt(val)) {
-                    s.classList.remove('bi-star');
-                    s.classList.add('bi-star-fill');
-                } else {
-                    s.classList.remove('bi-star-fill');
-                    s.classList.add('bi-star');
-                }
-            });
-        });
-    });
-});
-</script>
+    </section>
+@endif
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -306,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
         min-height: 420px;
         border-radius: 12px;
     }
+
     .thumbnail-box {
         width: 65px;
         height: 65px;
@@ -317,92 +271,67 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.7;
         transition: all 0.2s ease-in-out;
     }
+
     .thumbnail-box img {
         max-height: 100%;
         object-fit: contain;
     }
-    .thumbnail-box:hover, .thumbnail-box.active {
+
+    .thumbnail-box:hover,
+    .thumbnail-box.active {
         opacity: 1;
         border-color: #212529 !important;
     }
-    .color-swatch {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        border: 1px solid rgba(0,0,0,0.1);
-        padding: 0;
-        position: relative;
-        transition: transform 0.15s ease;
-    }
-    .color-swatch:hover {
-        transform: scale(1.1);
-    }
-    .color-swatch.active::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 25%;
-        width: 50%;
-        height: 2px;
-        background-color: #212529;
-    }
+
     .btn-buy {
         border-color: #212529;
         letter-spacing: 0.5px;
         font-size: 0.9rem;
     }
+
     .btn-basket {
         background-color: #111111;
         border: none;
         letter-spacing: 0.5px;
         font-size: 0.9rem;
     }
+
     .cursor-pointer {
         cursor: pointer;
     }
-    .last-child-border-0:last-child {
-        border-bottom: 0 !important;
-    }
-    .rating-input i {
-        transition: color 0.2s, transform 0.2s;
-    }
-    .rating-input i:hover {
-        transform: scale(1.1);
-    }
+
     .project-card {
         transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     }
+
     .project-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 15px 35px rgba(0,0,0,0.12) !important;
     }
-    .project-card .img img { transition: transform 0.5s ease; }
-    .project-card:hover .img img { transform: scale(1.05); }
-    
+
+    .project-card .img img {
+        transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .img img {
+        transform: scale(1.05);
+    }
+
+    .services .details {
+        background: color-mix(in srgb, var(--surface-color), transparent 5%);
+        padding: 50px 30px;
+        margin: -100px 30px 0 0px;
+        transition: all ease-in-out 0.3s;
+        position: relative;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0px 0 25px rgba(0, 0, 0, 0.1);
+    }
+
     @media (min-width: 992px) {
         .border-start-lg {
             border-left: 1px solid #e9ecef !important;
         }
-        .collapse-chevron {
-            transition: transform 0.3s ease;
-        }
-        [aria-expanded="true"] .collapse-chevron {
-            transform: rotate(90deg);
-        }
     }
-
-    
-.services .details {
-    background: 
- color-mix(in srgb, var(--surface-color), transparent 5%);
-    padding: 50px 30px;
-    margin: -100px 30px 0 0px;
-    transition: all ease-in-out 0.3s;
-    position: relative;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0px 0 25px rgba(0, 0, 0, 0.1);
-}
 </style>
-
 @endsection

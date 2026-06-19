@@ -65,31 +65,79 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'one_line_description' => 'nullable|string|max:255',
+            'tech_used' => 'nullable|string',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max 2MB
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'project_file' => 'nullable|file|max:51200',
+            'project_link' => 'nullable|url|max:2048',
+            'creator_name' => 'nullable|string|max:255',
+            'company_name' => 'nullable|string|max:255',
+            'creator_profile_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category' => 'required|string|in:App,Website,Theme,UI UX',
-            'price' => 'nullable|numeric|min:0',
+            'price' => 'required_if:status,paid|nullable|numeric|min:0.01',
             'rating' => 'nullable|numeric|min:0|max:5',
             'status' => 'required|string|in:free,paid',
             'language' => 'nullable|string|in:PHP,Python,JavaScript,Laravel',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('project_images', 'public');
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePaths[] = $image->store('project_images', 'public');
+            }
         }
 
-        Project::create([
+        $projectFilePath = null;
+        if ($request->hasFile('project_file')) {
+            $projectFilePath = $request->file('project_file')->store('project_files', 'public');
+        }
+
+        $creatorProfilePicPath = null;
+        if ($request->hasFile('creator_profile_pic')) {
+            $creatorProfilePicPath = $request->file('creator_profile_pic')->store('creator_profiles', 'public');
+        }
+
+        $project = Project::create([
             'title' => $request->title,
+            'one_line_description' => $request->one_line_description,
+            'tech_used' => $request->tech_used,
             'description' => $request->description,
-            'image_path' => $imagePath,
+            'image_path' => $imagePaths ? json_encode($imagePaths) : null,
+            'project_file_path' => $projectFilePath,
+            'project_link' => $request->project_link,
+            'creator_name' => $request->creator_name,
+            'company_name' => $request->company_name,
+            'creator_profile_pic' => $creatorProfilePicPath,
             'category' => $request->category,
-            'price' => $request->price ?? 0.00,
+            'price' => $request->status === 'paid' ? $request->price : 0.00,
             'rating' => $request->rating ?? 0.0,
             'status' => $request->status,
             'language' => $request->language,
         ]);
 
-        return redirect()->route('panel.pages.featured_projects')->with('success', 'Project added successfully!');
+        return redirect()->route('panel.pages.project-details', $project)->with('success', 'Project added successfully!');
+    }
+
+    public function show(Project $project)
+    {
+        $similarProjects = Project::whereKeyNot($project->id)
+            ->where('category', $project->category)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        if ($similarProjects->count() < 3) {
+            $moreProjects = Project::whereKeyNot($project->id)
+                ->whereNotIn('id', $similarProjects->pluck('id'))
+                ->latest()
+                ->take(3 - $similarProjects->count())
+                ->get();
+
+            $similarProjects = $similarProjects->concat($moreProjects);
+        }
+
+        return view('panel.pages.project-details', compact('project', 'similarProjects'));
     }
 }

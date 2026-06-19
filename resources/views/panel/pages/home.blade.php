@@ -12,23 +12,26 @@
         <p data-aos="fade-up" data-aos-delay="200">You can sell your projects, purchase what you need, and learn new skills all in one place.</p>
         
         <div class="w-100 mt-4" style="max-width: 750px;" data-aos="fade-up" data-aos-delay="300">
-          <form action="#" method="GET" class="input-group input-group-lg shadow">
+          <form action="{{ route('panel.pages.projects.index') }}" method="GET" class="input-group input-group-lg shadow">
             <input type="text" name="search" class="form-control border-0" placeholder="Search projects..." style="border-radius: 50px 0 0 50px; padding-left: 25px; font-size: 1rem;">
-            <select name="price" class="form-select border-0 border-start" style="max-width: 130px; font-size: 0.9rem; cursor: pointer;">
-              <option value="" selected disabled>Price</option>
+            <select name="status" class="form-select border-0 border-start" style="max-width: 130px; font-size: 0.9rem; cursor: pointer;">
+              <option value="" selected>Price</option>
               <option value="free">Free</option>
-              <option value="premium">Premium</option>
+              <option value="paid">Paid</option>
             </select>
             <select name="category" class="form-select border-0 border-start" style="max-width: 130px; font-size: 0.9rem; cursor: pointer;">
-              <option value="" selected disabled>Category</option>
-              <option value="app">App</option>
-              <option value="website">Website</option>
-              <option value="uiux">UI UX</option>
+              <option value="" selected>Category</option>
+              <option value="App">App</option>
+              <option value="Website">Website</option>
+              <option value="Theme">Theme</option>
+              <option value="UI UX">UI UX</option>
             </select>
             <select name="language" class="form-select border-0 border-start" style="max-width: 130px; font-size: 0.9rem; cursor: pointer;">
-              <option value="" selected disabled>Language</option>
-              <option value="php">PHP</option>
-              <option value="python">Python</option>
+              <option value="" selected>Language</option>
+              <option value="PHP">PHP</option>
+              <option value="Python">Python</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="Laravel">Laravel</option>
             </select>
             <button class="btn btn-get-started border-0 m-0 px-4 d-flex align-items-center" type="submit" style="border-radius: 0 50px 50px 0; background: var(--accent-color); color: white;">
               <i class="bi bi-search"></i>

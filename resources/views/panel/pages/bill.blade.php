@@ -44,17 +44,10 @@
                                 <input class="form-check-input ms-0 me-3 mt-1" type="radio" name="paymentMethod" id="creditCard" checked>
                                 <label class="form-check-label d-flex align-items-center stretched-link cursor-pointer" for="creditCard">
                                     <i class="bi bi-credit-card fs-4 me-3 text-dark"></i>
-                                    <span class="fw-medium">Credit / Debit Card</span>
+                                    <span class="fw-medium">Free for educational purposes.</span>
                                 </label>
                             </div>
-                            <div class="form-check border rounded-3 p-3 position-relative">
-                                <input class="form-check-input ms-0 me-3 mt-1" type="radio" name="paymentMethod" id="paypal">
-                                <label class="form-check-label d-flex align-items-center stretched-link cursor-pointer" for="paypal">
-                                    <i class="bi bi-paypal fs-4 me-3 text-primary"></i>
-                                    <span class="fw-medium">PayPal</span>
-                                </label>
-                            </div>
-                        </div>
+                        </div>    
 
                         <button type="submit" class="btn btn-dark w-100 py-3 fw-bold text-uppercase rounded-1 mt-4">Complete Purchase</button>
                     </form>
