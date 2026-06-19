@@ -6,34 +6,38 @@
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     @if (($featuredProjects ?? collect())->count())
-      <div class="row gy-5">
+      <div class="row gy-4">
         @foreach ($featuredProjects as $project)
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="{{ 200 + ($loop->index * 100) }}">
-            <div class="service-item shadow-sm p-0 overflow-hidden border-0 rounded-4 project-card position-relative" style="height: 320px;">
-              <div class="img h-100 w-100">
-                <img src="{{ $project->imageUrl() }}" class="img-fluid w-100 h-100 object-fit-cover" alt="{{ $project->title }}">
-              </div>
+            <article class="all-project-card h-100">
+              <a href="{{ route('panel.pages.project-details', $project) }}" class="all-project-image d-block">
+                <img src="{{ $project->imageUrl() }}" alt="{{ $project->title }}" class="img-fluid">
+              </a>
 
-              @if ($project->language)
-                <div class="project-language-bar position-absolute rounded-3 text-center">{{ $project->language }}</div>
-              @endif
-
-              <div class="details p-2 position-absolute bottom-0 start-50 translate-middle-x mb-2 rounded-3 text-center"
-                   style="width: 92%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="d-flex align-items-center gap-1 text-warning small">
-                    <i class="bi bi-star-fill"></i>
-                    <span class="text-dark fw-bold">{{ number_format((float) $project->rating, 1) }}</span>
-                  </div>
-
-                  <span class="fw-bold {{ $project->status === 'free' ? 'text-success' : 'text-dark' }}">{{ $project->priceLabel() }}</span>
+              <div class="all-project-body">
+                <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+                  <span class="project-chip">{{ $project->category }}</span>
+                  <span class="project-price {{ $project->status === 'free' ? 'text-success' : 'text-dark' }}">{{ $project->priceLabel() }}</span>
                 </div>
 
-                <a href="{{ route('panel.pages.project-details', $project) }}" class="stretched-link text-decoration-none">
-                  <h3 class="fs-4 fw-bold text-dark mb-0">{{ $project->title }}</h3>
-                </a>
+                <h3>
+                  <a href="{{ route('panel.pages.project-details', $project) }}">{{ $project->title }}</a>
+                </h3>
+
+                <p>{{ \Illuminate\Support\Str::limit($project->one_line_description ?: ($project->description ?? 'No description added yet.'), 95) }}</p>
+
+                <div class="d-flex justify-content-between align-items-center gap-3 mt-3">
+                  <span class="small text-warning">
+                    <i class="bi bi-star-fill"></i>
+                    <span class="text-muted">{{ number_format((float) $project->rating, 1) }}</span>
+                  </span>
+
+                  @if ($project->language)
+                    <span class="small text-muted">{{ $project->language }}</span>
+                  @endif
+                </div>
               </div>
-            </div>
+            </article>
           </div>
         @endforeach
       </div>
@@ -48,35 +52,72 @@
 </section>
 
 <style>
-  .services .details {
-    background: color-mix(in srgb, var(--surface-color), transparent 5%);
-    padding: 50px 30px;
-    margin: -100px 30px 0 0px;
-    transition: all ease-in-out 0.3s;
-    position: relative;
-    text-align: center;
+  .all-project-card {
+    background: var(--surface-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
     border-radius: 8px;
-    box-shadow: 0px 0 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .section-title {
-    padding-bottom: 60px;
-    position: relative;
+  .all-project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.1);
   }
 
-  .project-language-bar {
-    bottom: 88px;
-    left: 4%;
-    width: 32%;
-    background: rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    color: #111;
-    font-size: 0.82rem;
+  .all-project-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #eef0f2;
+  }
+
+  .all-project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .all-project-card:hover .all-project-image img {
+    transform: scale(1.04);
+  }
+
+  .all-project-body {
+    padding: 20px;
+  }
+
+  .all-project-body h3 {
+    font-size: 1.18rem;
     font-weight: 800;
-    letter-spacing: 0;
-    padding: 6px 12px;
-    z-index: 2;
+    line-height: 1.3;
+    margin: 0 0 8px;
+  }
+
+  .all-project-body h3 a {
+    color: var(--heading-color);
+    text-decoration: none;
+  }
+
+  .all-project-body h3 a:hover {
+    color: var(--accent-color);
+  }
+
+  .all-project-body p {
+    color: color-mix(in srgb, var(--default-color), transparent 25%);
+    margin: 0;
+  }
+
+  .project-chip {
+    background: color-mix(in srgb, var(--accent-color), transparent 88%);
+    border-radius: 6px;
+    color: var(--accent-color);
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 6px 10px;
+  }
+
+  .project-price {
+    font-weight: 800;
+    white-space: nowrap;
   }
 </style>

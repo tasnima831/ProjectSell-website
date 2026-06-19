@@ -1,28 +1,34 @@
 @extends('panel.layout')
 
 @section('content')
+    @php
+        $isEditing = isset($project);
+    @endphp
     <section id="add-project" class="contact section">
         <div class="container section-title" data-aos="fade-up">
-            <h2>Add New Project</h2>
-            <p>Fill out the form below to add a new project.</p>
+            <h2>{{ $isEditing ? 'Edit Project' : 'Add New Project' }}</h2>
+            <p>{{ $isEditing ? 'Update your project details.' : 'Fill out the form below to add a new project.' }}</p>
         </div>
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form action="{{ route('panel.pages.projects.store') }}" method="post" enctype="multipart/form-data" class="php-email-form">
+                    <form action="{{ $isEditing ? route('panel.pages.projects.update', $project) : route('panel.pages.projects.store') }}" method="post" enctype="multipart/form-data" class="php-email-form">
                         @csrf
+                        @if ($isEditing)
+                            @method('PUT')
+                        @endif
 
                         <div class="row gy-4">
                             <div class="col-md-12">
                                 <label for="title" class="form-label">Project Title</label>
-                                <input type="text" name="title" class="form-control" placeholder="Project Title" required value="{{ old('title') }}">
+                                <input type="text" name="title" class="form-control" placeholder="Project Title" required value="{{ old('title', $project->title ?? '') }}">
                                 @error('title')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="one_line_description" class="form-control" placeholder="One-Line Description" value="{{ old('one_line_description') }}">
+                                <input type="text" name="one_line_description" class="form-control" placeholder="One-Line Description" value="{{ old('one_line_description', $project->one_line_description ?? '') }}">
                                 @error('one_line_description')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -30,7 +36,7 @@
 
                             <div class="col-md-12 ">
                                 <label for="tech_used" class="form-label">Technical Stack</label>
-                                <textarea class="form-control" name="tech_used" rows="6" placeholder="Technical Stack">{{ old('tech_used') }}</textarea>
+                                <textarea class="form-control" name="tech_used" rows="6" placeholder="Technical Stack">{{ old('tech_used', $project->tech_used ?? '') }}</textarea>
                                 @error('tech_used')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -38,7 +44,7 @@
 
                             <div class="col-md-12 ">
                                 <label for="description" class="form-label">Project Description</label>
-                                <textarea class="form-control" name="description" rows="6" placeholder="Project Description">{{ old('description') }}</textarea>
+                                <textarea class="form-control" name="description" rows="6" placeholder="Project Description">{{ old('description', $project->description ?? '') }}</textarea>
                                 @error('description')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -56,6 +62,23 @@
                                 @error('images.*')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
+                                @if ($isEditing && $project->imagePaths())
+                                    <div class="small text-muted mt-1">Upload new images only if you want to replace the current gallery.</div>
+                                @endif
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="videos" class="form-label">Project Videos (optional)</label>
+                                <input type="file" name="videos[]" id="videos" class="form-control" accept="video/mp4,video/webm,video/ogg,video/quicktime" multiple>
+                                @error('videos')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                                @error('videos.*')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                                @if ($isEditing && $project->videos()->exists())
+                                    <div class="small text-muted mt-1">New uploaded videos will be added after existing videos.</div>
+                                @endif
                             </div>
 
                             <div class="col-md-6">
@@ -68,7 +91,7 @@
 
                             <div class="col-md-6">
                                 <label for="project_link" class="form-label">Project Link</label>
-                                <input type="url" name="project_link" id="project_link" class="form-control" placeholder="https://example.com" value="{{ old('project_link') }}">
+                                <input type="url" name="project_link" id="project_link" class="form-control" placeholder="https://example.com" value="{{ old('project_link', $project->project_link ?? '') }}">
                                 @error('project_link')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -76,7 +99,7 @@
 
                             <div class="col-md-6">
                                 <label for="creator_name" class="form-label">Created By Name</label>
-                                <input type="text" name="creator_name" id="creator_name" class="form-control" placeholder="Creator name" value="{{ old('creator_name') }}">
+                                <input type="text" name="creator_name" id="creator_name" class="form-control" placeholder="Creator name" value="{{ old('creator_name', $project->creator_name ?? '') }}">
                                 @error('creator_name')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -84,7 +107,7 @@
 
                             <div class="col-md-6">
                                 <label for="company_name" class="form-label">Company Name</label>
-                                <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Company or organization name" value="{{ old('company_name') }}">
+                                <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Company or organization name" value="{{ old('company_name', $project->company_name ?? '') }}">
                                 @error('company_name')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -102,10 +125,10 @@
                                 <label for="category" class="form-label">Category</label>
                                 <select name="category" id="category" class="form-select" required>
                                     <option value="" selected disabled>Select Category</option>
-                                    <option value="App" {{ old('category') == 'App' ? 'selected' : '' }}>App</option>
-                                    <option value="Website" {{ old('category') == 'Website' ? 'selected' : '' }}>Website</option>
-                                    <option value="Theme" {{ old('category') == 'Theme' ? 'selected' : '' }}>Theme</option>
-                                    <option value="UI UX" {{ old('category') == 'UI UX' ? 'selected' : '' }}>UI UX</option>
+                                    <option value="App" {{ old('category', $project->category ?? '') == 'App' ? 'selected' : '' }}>App</option>
+                                    <option value="Website" {{ old('category', $project->category ?? '') == 'Website' ? 'selected' : '' }}>Website</option>
+                                    <option value="Theme" {{ old('category', $project->category ?? '') == 'Theme' ? 'selected' : '' }}>Theme</option>
+                                    <option value="UI UX" {{ old('category', $project->category ?? '') == 'UI UX' ? 'selected' : '' }}>UI UX</option>
                                 </select>
                                 @error('category')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
@@ -115,8 +138,8 @@
                             <div class="col-md-6">
                                 <label for="status" class="form-label">Status</label>
                                 <select name="status" id="status" class="form-select" required>
-                                    <option value="free" {{ old('status') == 'free' ? 'selected' : '' }}>Free</option>
-                                    <option value="paid" {{ old('status') == 'paid' ? 'selected' : '' }}>Paid</option>
+                                    <option value="free" {{ old('status', $project->status ?? 'free') == 'free' ? 'selected' : '' }}>Free</option>
+                                    <option value="paid" {{ old('status', $project->status ?? '') == 'paid' ? 'selected' : '' }}>Paid</option>
                                 </select>
                                 @error('status')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
@@ -127,10 +150,10 @@
                                 <label for="language" class="form-label">Language</label>
                                 <select name="language" id="language" class="form-select">
                                     <option value="">Select Language</option>
-                                    <option value="PHP" {{ old('language') == 'PHP' ? 'selected' : '' }}>PHP</option>
-                                    <option value="Python" {{ old('language') == 'Python' ? 'selected' : '' }}>Python</option>
-                                    <option value="JavaScript" {{ old('language') == 'JavaScript' ? 'selected' : '' }}>JavaScript</option>
-                                    <option value="Laravel" {{ old('language') == 'Laravel' ? 'selected' : '' }}>Laravel</option>
+                                    <option value="PHP" {{ old('language', $project->language ?? '') == 'PHP' ? 'selected' : '' }}>PHP</option>
+                                    <option value="Python" {{ old('language', $project->language ?? '') == 'Python' ? 'selected' : '' }}>Python</option>
+                                    <option value="JavaScript" {{ old('language', $project->language ?? '') == 'JavaScript' ? 'selected' : '' }}>JavaScript</option>
+                                    <option value="Laravel" {{ old('language', $project->language ?? '') == 'Laravel' ? 'selected' : '' }}>Laravel</option>
                                 </select>
                                 @error('language')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
@@ -139,7 +162,7 @@
 
                             <div class="col-md-6">
                                 <label for="price" class="form-label">Price (for Paid projects)</label>
-                                <input type="number" name="price" id="price" class="form-control" step="0.01" min="0" value="{{ old('price') }}">
+                                <input type="number" name="price" id="price" class="form-control" step="0.01" min="0" value="{{ old('price', $project->price ?? '') }}">
                                 @error('price')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -148,9 +171,9 @@
                             <div class="col-md-12 text-center">
                                 <div class="loading">Loading</div>
                                 <div class="error-message"></div>
-                                <div class="sent-message">Your project has been added. Thank you!</div>
+                                <div class="sent-message">Your project has been saved. Thank you!</div>
 
-                                <button type="submit">Add Project</button>
+                                <button type="submit">{{ $isEditing ? 'Update Project' : 'Add Project' }}</button>
                             </div>
                         </div>
                     </form>

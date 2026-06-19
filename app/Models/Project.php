@@ -17,6 +17,7 @@ class Project extends Model
      */
     protected $fillable = [
         'title',
+        'user_id',
         'one_line_description',
         'tech_used',
         'description',
@@ -99,16 +100,56 @@ class Project extends Model
         return $urls ?: [$this->imageUrl()];
     }
 
-    public function creatorProfileUrl(): string
+    public function creatorProfileUrl(): ?string
     {
-        return $this->creator_profile_pic
-            ? asset('storage/' . $this->creator_profile_pic)
-            : 'https://i.pravatar.cc/64?u=' . urlencode($this->creator_name ?: $this->title);
+        return $this->creator_profile_pic ? asset('storage/' . $this->creator_profile_pic) : null;
     }
 
     public function priceLabel(): string
     {
         return $this->status === 'free' ? 'Free' : '$' . number_format((float) $this->price, 2);
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(ProjectVideo::class)->orderBy('sort_order');
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(ProjectPurchase::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProjectReview::class)->latest();
+    }
+
+    public function isOwnedBy(?User $user): bool
+    {
+        return $user && $this->user_id && (int) $this->user_id === (int) $user->id;
+    }
+
+    public function hasVideos(): bool
+    {
+        return $this->relationLoaded('videos') ? $this->videos->isNotEmpty() : $this->videos()->exists();
+    }
+
+    public function ratingValue(): float
+    {
+        $average = $this->reviews()->avg('rating');
+
+        return $average !== null ? (float) $average : (float) $this->rating;
+    }
+
+    public function reviewCount(): int
+    {
+        return $this->reviews()->count();
     }
 }
 

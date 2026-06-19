@@ -3,7 +3,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur</p>
+        <p>Contact Us</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -40,23 +40,40 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+            @if (session('contact_success'))
+              <div class="alert alert-success">{{ session('contact_success') }}</div>
+            @endif
+
+            <form action="{{ route('panel.contact.store') }}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+              @csrf
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required value="{{ old('name') }}">
+                  @error('name')
+                    <div class="text-danger small mt-1">{{ $message }}</div>
+                  @enderror
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required value="{{ old('email') }}">
+                  @error('email')
+                    <div class="text-danger small mt-1">{{ $message }}</div>
+                  @enderror
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required value="{{ old('subject') }}">
+                  @error('subject')
+                    <div class="text-danger small mt-1">{{ $message }}</div>
+                  @enderror
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
+                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required>{{ old('message') }}</textarea>
+                  @error('message')
+                    <div class="text-danger small mt-1">{{ $message }}</div>
+                  @enderror
                 </div>
 
                 <div class="col-md-12 text-center">
